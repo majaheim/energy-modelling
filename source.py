@@ -14,7 +14,7 @@ def open_mat_data(file_name, field_name):
 # @array_size
 # @data - the array containing the data
 # @title - title of the graph
-# @return - true is plot was sucessfully generated
+# @return - true is plot was successfully generated
 def graph_single_array(array_size, data, title, x_axis = 'X axis', y_axis = 'Y axis'):
     x = np.arange(0, array_size)
     plt.title(title)
@@ -22,11 +22,7 @@ def graph_single_array(array_size, data, title, x_axis = 'X axis', y_axis = 'Y a
     plt.ylabel(y_axis)
     plt.plot(x, data, color="blue")
     plt.show()
-    #if plt.show():
-    if 1 == 1:
-        return True
-    else:
-        return False
+    return True
 
 def main():
     print("Hello World!")
