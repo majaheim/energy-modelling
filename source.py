@@ -1,2 +1,3 @@
-def add(x,y):
-    return x+y
+import scipy.io
+mat = scipy.io.loadmat('PV_Einspeiseprofil.mat')
+print(mat)
