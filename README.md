@@ -1,1 +1,4 @@
-# energy-modelling
+# Energy-modelling
+
+Copyright 2023 Maja Heim
+
