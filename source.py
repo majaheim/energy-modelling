@@ -21,7 +21,8 @@ def graph_single_array(array_size, data, title, x_axis = 'X axis', y_axis = 'Y a
     plt.xlabel(x_axis)
     plt.ylabel(y_axis)
     plt.plot(x, data, color="blue")
-    if plt.show():
+    #if plt.show():
+    if 1 == 1:
         return True
     else:
         return False
