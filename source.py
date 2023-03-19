@@ -12,7 +12,7 @@ def open_mat_data(file_name, field_name):
 
 def main():
     print("Hello World!")
-    ESPV = open_mat_data('PV_Einspeiseprofil.mat', 'Leistung_Vec_Temperatur_Temp')
+    ESPV = open_mat_data('data/PV_Einspeiseprofil.mat', 'Leistung_Vec_Temperatur_Temp')
 
     # test plot
     x = np.arange(0, 35040)
