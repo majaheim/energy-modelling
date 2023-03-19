@@ -21,7 +21,8 @@ jobs:
 
     - name: Install dependencies
       run: pip install pytest
-      run: pip install scipy
+           pip install scipy
+           pip install matplotlib
 
     - name: Test with pytest
       run: pytest
