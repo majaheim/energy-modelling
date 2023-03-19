@@ -6,4 +6,4 @@ def test_open_mat_data():
     
 def test_graph_single_array():
     ESPV = source.open_mat_data('data/PV_Einspeiseprofil.mat', 'Leistung_Vec_Temperatur_Temp')
-    assert source.graph_single_array(35040, ESPV , "Einspeiseprofil der PV Anlage") == True
+    assert source.graph_single_array(35040, ESPV, "Einspeiseprofil der PV Anlage") == True
