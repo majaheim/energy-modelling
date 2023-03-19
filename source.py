@@ -20,7 +20,7 @@ def graph_single_array(array_size, data, title, x_axis = 'X axis', y_axis = 'Y a
     plt.title(title)
     plt.xlabel(x_axis)
     plt.ylabel(y_axis)
-    plt.plot(x, dataaa, color="blue")
+    plt.plot(x, data, color="blue")
     plt.show()
     return True
 
