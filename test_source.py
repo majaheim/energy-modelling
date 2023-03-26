@@ -11,3 +11,8 @@ def test_graph_single_array():
 def test_zeros():
     array = source.zeros(378)
     assert array[45] == 0
+
+def test_init():
+    array = source.zeros(365)
+    array = source.init(array)
+    assert array[4] == 1
