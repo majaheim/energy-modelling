@@ -66,9 +66,9 @@ def init(workday_array):
     counter = 1
     for n in range(0,365,1):
         if counter <= 5:        #Monday - Friday
-            workday_array[n] = 1
+            workday_array[n-1] = 1
         else:
-            workday_array[n] = 0
+            workday_array[n-1] = 0
 
         if counter == 7:
             counter = 1
