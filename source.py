@@ -77,7 +77,23 @@ def init(workday_array):
 
     return workday_array
 
-#Function that
+#Function that configures car availability array
+def car_availability(car_array, workday_array):
+    for n in range(0,365,1):
+        if workday_array[n] == 1:   #Mo-Fr
+            if (96*(n-1)) == 0:          #24h*4(power is measeured 4 times per hour)
+                for i in range(96):
+                    if i <= 34 | i >= 70:    #car is at home (only first day)
+                        car_array[i] = 1
+            else:
+                for i in range(96*(n-1), 96*n, 1):
+                    if (i <= (34 + 96*(n-1))) | (i >= (70 + 96*(n-1))):
+                        car_array[i] = 1
+        else:                       #Weekend
+            for i in range(96*(n-1), 96*n, 1):
+                car_array[i] = 1            #car is at home all weekend
+
+    return car_array
 
 def main():
     print("Hello World!")
@@ -109,13 +125,14 @@ def main():
     Workday = zeros(365)
     Workday = init(Workday)
     Car_available = zeros(35040)
+    Car_available = car_availability(Car_available, Workday)
 
     #Laden ??
 
     #Calculations for 9-5Job Unidirectioinal
     H8 = check_pv_production(35040, PV_power, LH8, Own_consumption_H8)  #Index 0: houshold consumption, Index 1: excess power
     #print(H8.shape)
-    #graph_single_array(35040, H8[1, :], 'test')
+    graph_single_array(35040, Car_available, 'test')
 
 
 
