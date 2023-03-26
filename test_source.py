@@ -15,4 +15,5 @@ def test_zeros():
 def test_init():
     array = source.zeros(365)
     array = source.init(array)
+    print(array[3])
     assert array[4] == 1
