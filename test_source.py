@@ -10,6 +10,7 @@ def test_graph_single_array():
 
 def test_zeros():
     array = source.zeros(378)
+    print(array[45])
     assert array[45] == 0
 
 def test_init():
