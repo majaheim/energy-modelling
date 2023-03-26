@@ -37,8 +37,8 @@ def graph_single_array(array_size, data, title, x_axis = 'X axis', y_axis = 'Y a
 
 #Function that creates an array of zeros
 def zeros(size):
-    #array = [0] * size
-    array = np.empty(size)
+    array = [0] * size
+    #array = np.empty(size)
     return array
 
 #Function that checks what PV is producing and fills the arrays
