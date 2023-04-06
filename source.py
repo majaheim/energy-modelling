@@ -2,11 +2,11 @@ import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
 
-"""Function that opens Matlab datasets"""
-""" @file_name - the name of the .mat file """
-""" @field_name - the name of the column which contains the data """
-""" @array_column - the the arrray contains arrays, specify which colum """
-""" @return - an array with all the values from the corresponding column"""
+""" Function that opens Matlab datasets"""
+# @file_name - the name of the .mat file """
+# @field_name - the name of the column which contains the data """
+# @array_column - the array contains arrays, specify which colum """
+# @return - an array with all the values from the corresponding column"""
 def open_mat_data(file_name, field_name, array_column = 0):
     if array_column == 0:
         mat = scipy.io.loadmat(file_name, squeeze_me = True)
@@ -18,17 +18,17 @@ def open_mat_data(file_name, field_name, array_column = 0):
         return mat_array_column
 
 
-# Function that creates graph with data
+"""Function that creates graph with data"""
 # @array_size
 # @data - the array containing the data
 # @title - title of the graph
 # @return - true is plot was successfully generated
 def graph_single_array(array_size, data, title, x_axis = 'X axis', y_axis = 'Y axis'):
-    x = np.arange(0, array_size)
+    x_value = np.arange(0, array_size)
     plt.title(title)
     plt.xlabel(x_axis)
     plt.ylabel(y_axis)
-    plt.plot(x, data, color="blue")
+    plt.plot(x_value, data, color="blue")
     plt.show()
     return True
 # I am aware that this return makes little sense -
@@ -36,18 +36,19 @@ def graph_single_array(array_size, data, title, x_axis = 'X axis', y_axis = 'Y a
 # The unit test makes sure that a plot was created,
 # but cannot make assumptions about the correctness of the data in the plot
 
-def graph_multiple_array(array_size, data, data2, title = 'Example', x_axis = 'X axis', y_axis = 'Y axis', description = 'data', description2 = 'data2'):
-    x = np.arange(0, array_size)
+def graph_multiple_array(array_size, data, data2, title = 'Example'
+                         , x_axis = 'X axis', y_axis = 'Y axis', description = 'data', description2 = 'data2'):
+    x_value = np.arange(0, array_size)
     plt.title(title)
     plt.xlabel(x_axis)
     plt.ylabel(y_axis)
-    plt.plot(x, data, color="blue", label = description)
-    plt.plot(x, data2, color="red", label = description2)
+    plt.plot(x_value, data, color="blue", label = description)
+    plt.plot(x_value, data2, color="red", label = description2)
     plt.legend()
     plt.show()
     return True
 
-#Function that creates an array of zeros
+"""Function that creates an array of zeros"""
 def zeros(size):
     array = [0] * size
     #array = np.empty(size)
@@ -73,7 +74,7 @@ def zeros(size):
 #
 #     return household
 
-#Function that fills workday the array with 1(workday) or 0(weekend)
+"""Function that fills workday the array with 1(workday) or 0(weekend)"""
 def init(workday_array, days):
     counter = 1
     for n in range(0, 365, 1):
@@ -110,34 +111,32 @@ def init(workday_array, days):
 def main():
     print("Hello World!")
 
-    # #load PV Einspeiseprofildata
-    ESPV = open_mat_data('data/PV_Einspeiseprofil.mat', 'Leistung_Vec_Temperatur_Temp')
-    PV_power = 10*ESPV*1000*0.25     #1000: Power is kW , 0.25:??
-    PV_power_short = PV_power[0:672]
-    #graph_single_array(672, PV_power_short, "Einspeiseprofil der PV Anlage")
+    # load PV Einspeiseprofildata
+    pv_injection = open_mat_data('data/PV_Einspeiseprofil.mat', 'Leistung_Vec_Temperatur_Temp')
+    pv_power = 10*pv_injection*1000*0.25     #1000: Power is kW , 0.25:??
+    PV_power_short = pv_power[0:672]
+    #graph_single_array(672, pv_power_short, "Einspeiseprofil der PV Anlage")
 
     # load LeistungHaushalte - Consumer 8 is used here
-    LH8 = open_mat_data('data/LeistungHaushalte.mat', 'LeistungHaushalte', 8)
-    LH8_short = LH8[0:672]
+    houshold_load = open_mat_data('data/LeistungHaushalte.mat', 'LeistungHaushalte', 8)
+    houshold_load_short = houshold_load[0:672]
     #graph_single_array(672, LH8_short, "Leistung der Haushalte - one week")
-    graph_multiple_array(672, PV_power_short, LH8_short, "Electricity consumption / generation - one week",
-                         "Time [h]", "Electricity [kWh]", "PV generation", "Houshold consumption")
+    graph_multiple_array(672, PV_power_short, houshold_load_short,
+                         "Electricity consumption / generation - one week", "Time [h]",
+                         "Electricity [kWh]", "PV generation", "Houshold consumption")
 
-    Workday_5 = zeros(365)
-    Workday_5 = init(Workday_5, 5)
-    Workday_5_short = Workday_5[0:13]
-    #graph_single_array(13, Workday_5_short, "Availability EV 5 days a week")
+    workday_5 = zeros(365)
+    workday_5 = init(workday_5, 5)
+    workday_5_short = workday_5[0:13]
+    #graph_single_array(13, workday_5_short, "Availability EV 5 days a week")
 
 
-    Workday_4 = zeros(365)
-    Workday_4 = init(Workday_4, 4)
-    Workday_4_short = Workday_4[0:13]
+    workday_4 = zeros(365)
+    workday_4 = init(workday_4, 4)
+    workday_4_short = workday_4[0:13]
 
-    graph_multiple_array(13, Workday_5_short, Workday_4_short, "EV Availability - 2 week period",
+    graph_multiple_array(13, workday_5_short, workday_4_short, "EV Availability - 2 week period",
                          "Days", "Availability", "5 workdays", "4 workdays")
-
-
-
 
 if __name__ == "__main__":
          main()
