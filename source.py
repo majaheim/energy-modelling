@@ -2,11 +2,11 @@ import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Function that opens Matlab datasets
-# @file_name - the name of the .mat file
-# @field_name - the name of the column which contains the data
-# @array_column - the the arrray contains arrays, specify which colum
-# @return - an array with all the values from the corresponding column
+"""Function that opens Matlab datasets"""
+""" @file_name - the name of the .mat file """
+""" @field_name - the name of the column which contains the data """
+""" @array_column - the the arrray contains arrays, specify which colum """
+""" @return - an array with all the values from the corresponding column"""
 def open_mat_data(file_name, field_name, array_column = 0):
     if array_column == 0:
         mat = scipy.io.loadmat(file_name, squeeze_me = True)
@@ -31,8 +31,10 @@ def graph_single_array(array_size, data, title, x_axis = 'X axis', y_axis = 'Y a
     plt.plot(x, data, color="blue")
     plt.show()
     return True
-# I am aware that this return makes little sense - I just had to create this in order to have a sucessfull unit test
-# The unit test makes sure that a plot was created, but cannot make assumptions about the correctness of the data in the plot
+# I am aware that this return makes little sense -
+# I just had to create this in order to have a sucessfull unit test
+# The unit test makes sure that a plot was created,
+# but cannot make assumptions about the correctness of the data in the plot
 
 def graph_multiple_array(array_size, data, data2, title = 'Example', x_axis = 'X axis', y_axis = 'Y axis', description = 'data', description2 = 'data2'):
     x = np.arange(0, array_size)
@@ -118,7 +120,8 @@ def main():
     LH8 = open_mat_data('data/LeistungHaushalte.mat', 'LeistungHaushalte', 8)
     LH8_short = LH8[0:672]
     #graph_single_array(672, LH8_short, "Leistung der Haushalte - one week")
-    graph_multiple_array(672, PV_power_short, LH8_short, "Electricity consumption / generation - one week", "Time [h]", "Electricity [kWh]", "PV generation", "Houshold consumption")
+    graph_multiple_array(672, PV_power_short, LH8_short, "Electricity consumption / generation - one week",
+                         "Time [h]", "Electricity [kWh]", "PV generation", "Houshold consumption")
 
     Workday_5 = zeros(365)
     Workday_5 = init(Workday_5, 5)
@@ -130,7 +133,8 @@ def main():
     Workday_4 = init(Workday_4, 4)
     Workday_4_short = Workday_4[0:13]
 
-    graph_multiple_array(13, Workday_5_short, Workday_4_short, "EV Availability - 2 week period", "Days", "Availability", "5 workdays", "4 workdays")
+    graph_multiple_array(13, Workday_5_short, Workday_4_short, "EV Availability - 2 week period",
+                         "Days", "Availability", "5 workdays", "4 workdays")
 
 
 
