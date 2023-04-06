@@ -109,28 +109,16 @@ def main():
     print("Hello World!")
 
     # #load PV Einspeiseprofildata
-    # ESPV = open_mat_data('data/PV_Einspeiseprofil.mat', 'Leistung_Vec_Temperatur_Temp')
-    # graph_single_array(35040, ESPV, "Einspeiseprofil der PV Anlage")
+    ESPV = open_mat_data('data/PV_Einspeiseprofil.mat', 'Leistung_Vec_Temperatur_Temp')
+    PV_power = 10*ESPV*1000*0.25     #1000: Power is kW , 0.25:??
+    PV_power_short = PV_power[0:672]
+    #graph_single_array(672, PV_power_short, "Einspeiseprofil der PV Anlage")
 
     # load LeistungHaushalte - Consumer 8 is used here
     LH8 = open_mat_data('data/LeistungHaushalte.mat', 'LeistungHaushalte', 8)
-    #graph_single_array(35040, LH, "Leistung der Haushalte")
-
-    # load PV Production
-    #PVP = open_mat_data('data/Load_PVProduction.mat', 'LeistungHaushalte')
-
-    # load Spotpreis
-    #LH = open_mat_data('data/LeistungHaushalte.mat', 'LeistungHaushalte')
-
-    # #The section below intializes variables used for further calculations
-    # PV_power = 10*ESPV*1000*0.25     #1000: Power is kW , 0.25:??
-    # Battery_state = zeros(35040)
-    # Charging_energy = zeros(35040)
-    # Dischargeing_energy = zeros(35040)
-    # Own_consumption_H8 = zeros(35040)
-
-    # #At the begining the Battery is full:
-    # Battery_state[0] = 58000
+    LH8_short = LH8[0:672]
+    #graph_single_array(672, LH8_short, "Leistung der Haushalte - one week")
+    graph_multiple_array(672, PV_power_short, LH8_short, "Electricity consumption / generation - one week", "Time [h]", "Electricity [kWh]", "PV generation", "Houshold consumption")
 
     Workday_5 = zeros(365)
     Workday_5 = init(Workday_5, 5)
@@ -143,18 +131,6 @@ def main():
     Workday_4_short = Workday_4[0:13]
 
     graph_multiple_array(13, Workday_5_short, Workday_4_short, "EV Availability - 2 week period", "Days", "Availability", "5 workdays", "4 workdays")
-
-    # Car_available = zeros(35040)
-    # Car_available = car_availability(Car_available, Workday_5)
-    # Car_available_short = Car_available[0:672]      #one week
-    # graph_single_array(672, Car_available_short, "Car availability")
-
-    #Calculations for 9-5Job Unidirectioinal
-    # H8 = check_pv_production(35040, PV_power, LH8, Own_consumption_H8)  #Index 0: houshold consumption, Index 1: excess power
-    # #print(H8.shape)
-    # graph_single_array(35040, Car_available, 'test')
-
-
 
 
 
