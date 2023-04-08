@@ -1,2 +1,4 @@
 scipy.io              #This package is used to import the Matlab data
-matplotlib.pyplot     
+numpy
+matplotlib.pyplot    
+
