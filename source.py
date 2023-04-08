@@ -118,10 +118,10 @@ def main():
     #graph_single_array(672, pv_power_short, "Einspeiseprofil der PV Anlage")
 
     # load LeistungHaushalte - Consumer 8 is used here
-    houshold_load = open_mat_data('data/LeistungHaushalte.mat', 'LeistungHaushalte', 8)
-    houshold_load_short = houshold_load[0:672]
+    household_load = open_mat_data('data/LeistungHaushalte.mat', 'LeistungHaushalte', 8)
+    household_load_short = household_load[0:672]
     #graph_single_array(672, LH8_short, "Leistung der Haushalte - one week")
-    graph_multiple_array(672, PV_power_short, houshold_load_short,
+    graph_multiple_array(672, PV_power_short, household_load_short,
                          "Electricity consumption / generation - one week", "Time [h]",
                          "Electricity [kWh]", "PV generation", "Houshold consumption")
 
@@ -136,7 +136,7 @@ def main():
     workday_4_short = workday_4[0:13]
 
     graph_multiple_array(13, workday_5_short, workday_4_short, "EV Availability - 2 week period",
-                         "Days", "Availability", "5 workdays", "4 workdays")
+                         "Time [days]", "Availability ", "5 workdays", "4 workdays")
 
 if __name__ == "__main__":
          main()
