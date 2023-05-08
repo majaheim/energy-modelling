@@ -20,9 +20,7 @@ jobs:
         python-version: 3.9
 
     - name: Install dependencies
-      run: pip install pytest
-           pip install scipy
-           pip install matplotlib
+      run: pip install -r requirements.txt
 
     - name: Test with pytest
       run: pytest
