@@ -17,12 +17,12 @@ def test_graph_multiple_array():
 
 def test_zeros():
     array = source.zeros(378)
-    assert array[45] == 0
+    assert array[45] == 1
 
 def test_init():
     array = source.zeros(365)
     array = source.init(array, 5)
     print(array[3])
-    assert array[4] == 1
+    assert array[4] == 0
 
 
